@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:backgroundTint="@color/backgroundC"
+    android:background="@drawable/rectshape">
+
+    <TextView
+        android:id="@+id/tipstxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="21dp"
+        android:text="Tips Calculadora"
+        android:textColor="@color/white2"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tipstxt2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tipstxt2"
+        android:layout_width="360dp"
+        android:layout_height="47dp"
+        android:layout_margin="16dp"
+        android:text="Preencha os campos abaixo para realizar o calculo da gorjeta"
+        android:textColor="@color/white2"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@color/white2"
+        android:id="@+id/tie_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipstxt2"
+        app:layout_constraintVertical_bias="0.0">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/total"
+        android:textColor="@color/white2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       android:hint="Digite o valor total da conta "
+        android:textSize="13dp"
+        android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@color/white2"
+        android:id="@+id/til_number_of_people2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tie_total"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/num_people"
+            android:textColor="@color/white2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Digite o numero de pessoas na mesa"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:textSize="13dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_percentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/til_number_of_people2"
+        app:layout_constraintStart_toStartOf="@+id/til_number_of_people2"
+        app:layout_constraintTop_toBottomOf="@+id/til_number_of_people2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <RadioButton
+            android:id="@+id/rb_option_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white2"
+            android:text="10%"/>
+
+        <RadioButton
+            android:id="@+id/rb_option_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white2"
+            android:text="15%"/>
+
+        <RadioButton
+            android:id="@+id/rb_option_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white2"
+            android:text="20%"/>
+
+    </RadioGroup>
+
+    <Button
+        android:clickable="true"
+        android:id="@+id/btn_clean"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/centerCircle"
+        android:text="Limpar"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/Guide"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/til_number_of_people2"
+        app:layout_constraintTop_toBottomOf="@+id/rg_percentage" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:clickable="true"
+        android:id="@+id/btn_done1"
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:backgroundTint="@color/centerCircle"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="Calcular"
+        app:layout_constraintEnd_toEndOf="@+id/til_number_of_people2"
+        app:layout_constraintStart_toEndOf="@+id/Guide"
+        app:layout_constraintTop_toBottomOf="@+id/rg_percentage" />
+
+    <TextView
+
+        android:id="@+id/text_visible_tip"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seu Tips Será:"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textColor="@color/white2"
+        app:layout_constraintBottom_toTopOf="@+id/vp_circle_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_clean"
+        app:layout_constraintVertical_bias="0.622" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:visibility="invisible"
+        android:id="@+id/vp_circle_edit"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_done1"
+        app:layout_constraintVertical_bias="0.341" />
+
+    <Button
+        android:id="@+id/btn_avancar_calculo"
+        android:backgroundTint="@color/centerCircle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avançar"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_margin="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

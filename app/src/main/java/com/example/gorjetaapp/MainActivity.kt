@@ -7,58 +7,56 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.gorjetaapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager2
-    private lateinit var adapter: CircleAdapter
-    private lateinit var viewpagerS:ViewPager2
-    private lateinit var adapter2 : AdapterRect
-
+    private  lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.tips)
+       binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.txtCliqueAqui.setOnClickListener {
+            val bottomSheetDialogFragment = DielogCalculo()
+            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
+        }
 
         val circles = listOf(
-            CircleData(R.drawable.centercircle, "€3"),
-            CircleData(R.drawable.centercircle, "€1"),
-            CircleData(R.drawable.centercircle, "€2"),
-            CircleData(R.drawable.centercircle, "€4"),
-            CircleData(R.drawable.centercircle, "€5"),
-            CircleData(R.drawable.centercircle, "€6"),
-            CircleData(R.drawable.centercircle, "€7")
+            CircleData(R.drawable.centercircle, "€3",false),
+            CircleData(R.drawable.centercircle, "€1", false),
+            CircleData(R.drawable.centercircle, "€2",false),
+            CircleData(R.drawable.centercircle, "€4",false),
+            CircleData(R.drawable.centercircle, "€5",false),
+            CircleData(R.drawable.centercircle, "€6",false),
+            CircleData(R.drawable.centercircle, "€7",false)
 
         )
 val rect = listOf(
-    CircleData(R.drawable.at1,"Carlos"),
-    CircleData(R.drawable.at2,"Roberto"),
-    CircleData(R.drawable.at3,"Vania"),
-    CircleData(R.drawable.at2,"Eri"),
-    CircleData(R.drawable.at1,"Bruno")
+    CircleData(R.drawable.at1,"Carlos",false),
+    CircleData(R.drawable.at2,"Roberto",false),
+    CircleData(R.drawable.at3,"Vania",false),
+    CircleData(R.drawable.at2,"Eri",false),
+    CircleData(R.drawable.at1,"Bruno",false)
 )
-        viewpagerS = findViewById(R.id.vp_atendente)
-        adapter2 = AdapterRect(this,rect)
+        binding.vpAtendente.adapter = AdapterRect(this,rect)
 
-        viewPager = findViewById(R.id.vp_circle)
-        adapter = CircleAdapter(this, circles)
 
-        viewpagerS.adapter = adapter2
-
-        viewPager.adapter = adapter
+        binding.vpCircle.adapter = CircleAdapter(this,circles)
 
         setupCarousel()
         val initialPosition = circles.size / 2
 
         setupCarousel2()
         val initialPosition2 = rect.size/2
-         viewpagerS.setCurrentItem(initialPosition2,true)
+        binding.vpAtendente.setCurrentItem(initialPosition2,true)
 
 // Definir o item inicial no ViewPager2
-        viewPager.setCurrentItem(initialPosition, true)
+        binding.vpCircle.setCurrentItem(initialPosition, true)
     }
 
     private fun setupCarousel() {
-        viewPager.offscreenPageLimit = 1
+        binding.vpCircle.offscreenPageLimit = 1
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =
@@ -72,17 +70,17 @@ val rect = listOf(
                 page.scaleX = 1 - (0.35f * kotlin.math.abs(position))
                 page.alpha = 0.20f + (1 - kotlin.math.abs(position))
             }
-        viewPager.setPageTransformer(pageTransformer)
+        binding.vpCircle.setPageTransformer(pageTransformer)
         val itemDecoration = HorizontalMarginItemDecoration(
             this,
             R.dimen.viewpager_current_item_horizontal_margin
         )
-        viewPager.addItemDecoration(itemDecoration)
+        binding.vpCircle.addItemDecoration(itemDecoration)
 
 
     }
     private fun setupCarousel2() {
-        viewpagerS.offscreenPageLimit = 1
+        binding.vpAtendente.offscreenPageLimit = 1
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible2)
         val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin2)
@@ -95,11 +93,11 @@ val rect = listOf(
                 page.scaleX = 1- (0.35f * kotlin.math.abs(position))
                 page.alpha = 0.20f +(1 - kotlin.math.abs(position))
             }
-          viewpagerS.setPageTransformer(pageTransformer)
+          binding.vpAtendente.setPageTransformer(pageTransformer)
         val itemDecoration = HorizontalMarginItemDecoration(
             this,R.dimen.viewpager_current_item_horizontal_margin2
         )
-        viewpagerS.addItemDecoration(itemDecoration)
+       binding.vpAtendente.addItemDecoration(itemDecoration)
     }
 
     class HorizontalMarginItemDecoration(
